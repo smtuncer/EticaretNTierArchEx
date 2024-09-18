@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NestWebApp.BL.Repositories;
+using NestWebApp.DAL.Context;
 using NestWebApp.Mapping;
-using NestWebApp.Models.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(_ =>
 })
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(SQLRepository<>));
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";

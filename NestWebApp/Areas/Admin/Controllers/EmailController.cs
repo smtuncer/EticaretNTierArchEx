@@ -1,61 +1,57 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NestWebApp.Models;
-using NestWebApp.Models.Data;
+using NestWebApp.BL.Repositories;
+using NestWebApp.DAL.Models;
 using NestWebApp.Models.StaticClasses;
 
-namespace NestWebApp.Areas.Admin.Controllers
+namespace NestWebApp.Areas.Admin.Controllers;
+
+[Area("Admin")]
+[Authorize(Roles = Role.Role_Admin)]
+public class EmailController : Controller
 {
-    [Area("Admin")]
-    [Authorize(Roles = Role.Role_Admin)]
-    public class EmailController : Controller
+    private readonly IRepository<MailSettings> _context;
+    public EmailController(IRepository<MailSettings> context)
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
+    }
+    [HttpGet]
+    public IActionResult Edit()
+    {
+        var data = _context.GetAll();
+        if (data == null)
+        {
+            return RedirectToAction("Create");
+        }
+        else
+        {
+            return View(data);
+        }
+    }
+    [HttpPost]
+    public IActionResult Edit(MailSettings p)
+    {
+        _context.Update(p);
+        return RedirectToAction("Edit");
+    }
+    [HttpGet]
+    public IActionResult Create()
+    {
 
-        public EmailController(ApplicationDbContext context)
+        var data = _context.GetAll();
+        if (data == null)
         {
-            _context = context;
+            return View();
         }
-        [HttpGet]
-        public IActionResult Edit()
+        else
         {
-            var data = _context.MailSettings.FirstOrDefault();
-            if (data == null)
-            {
-                return RedirectToAction("Create");
-            }
-            else
-            {
-                return View(data);
-            }
-        }
-        [HttpPost]
-        public IActionResult Edit(MailSettings p)
-        {
-            _context.Update(p);
-            _context.SaveChanges();
             return RedirectToAction("Edit");
         }
-        [HttpGet]
-        public IActionResult Create()
-        {
-
-            var data = _context.MailSettings.FirstOrDefault();
-            if (data == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Edit");
-            }
-        }
-        [HttpPost]
-        public IActionResult Create(MailSettings p)
-        {
-            _context.Add(p);
-            _context.SaveChanges();
-            return RedirectToAction("Edit");
-        }
+    }
+    [HttpPost]
+    public IActionResult Create(MailSettings p)
+    {
+        _context.Add(p);
+        return RedirectToAction("Edit");
     }
 }

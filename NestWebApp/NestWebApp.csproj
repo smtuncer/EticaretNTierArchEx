@@ -31,4 +31,9 @@
     <Folder Include="wwwroot\Nest_v5.8_Unzip-First\Nest_v5.8_Unzip-First\nest-backend\assets\fonts\material-icon\css\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NestWebApp.BL\NestWebApp.BL.csproj" />
+    <ProjectReference Include="..\NestWebApp.DAL\NestWebApp.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

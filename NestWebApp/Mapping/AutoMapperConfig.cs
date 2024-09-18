@@ -1,17 +1,16 @@
 ﻿using AutoMapper;
-using NestWebApp.Models;
+using NestWebApp.DAL.Models;
 using NestWebApp.Models.ViewModels;
 
-namespace NestWebApp.Mapping
+namespace NestWebApp.Mapping;
+
+public class AutoMapperConfig : Profile
 {
-    public class AutoMapperConfig : Profile
+    public AutoMapperConfig()
     {
-        public AutoMapperConfig()
-        {
-            CreateMap<AppUser, UserListVM>()
-                .ForMember(dest => dest.Roles, opt => opt.Ignore());
-            CreateMap<AppUser, GetUserVM>()
-                .ForMember(dest => dest.Roles, opt => opt.Ignore());
-        }
+        CreateMap<AppUser, UserListVM>()
+            .ForMember(dest => dest.Roles, opt => opt.Ignore());
+        CreateMap<AppUser, GetUserVM>()
+            .ForMember(dest => dest.Roles, opt => opt.Ignore());
     }
 }

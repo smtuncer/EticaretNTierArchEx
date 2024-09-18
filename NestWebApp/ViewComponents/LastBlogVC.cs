@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NestWebApp.Models.Data;
+using NestWebApp.DAL.Context;
 
-namespace NestWebApp.ViewComponents
+namespace NestWebApp.ViewComponents;
+
+public class LastBlogVC : ViewComponent
 {
-    public class LastBlogVC : ViewComponent
+    private readonly ApplicationDbContext _context;
+    public LastBlogVC(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        public LastBlogVC(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            return View(await _context.Blog.Where(x => x.IsDeleted == false).AsNoTracking().Take(7).ToListAsync());
-        }
+        _context = context;
+    }
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        return View(await _context.Blog.Where(x => x.IsDeleted == false).AsNoTracking().Take(7).ToListAsync());
     }
 }

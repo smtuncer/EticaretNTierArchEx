@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NestWebApp.Models.Data;
+using NestWebApp.DAL.Context;
 
-namespace NestWebApp.ViewComponents
+namespace NestWebApp.ViewComponents;
+
+public class SliderVC : ViewComponent
 {
-    public class SliderVC : ViewComponent
+    private readonly ApplicationDbContext _context;
+    public SliderVC(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
-        public SliderVC(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        public async Task<IViewComponentResult> InvokeAsync()
-        {
-            return View(await _context.Slider.AsNoTracking().ToListAsync());
-        }
+        _context = context;
+    }
+    public async Task<IViewComponentResult> InvokeAsync()
+    {
+        return View(await _context.Slider.AsNoTracking().ToListAsync());
     }
 }

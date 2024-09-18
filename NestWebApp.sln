@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestWebApp", "NestWebApp\NestWebApp.csproj", "{DAE2CB9A-A855-4761-B814-E0AA3B1AD999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NestWebApp", "NestWebApp\NestWebApp.csproj", "{DAE2CB9A-A855-4761-B814-E0AA3B1AD999}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestWebApp.DAL", "NestWebApp.DAL\NestWebApp.DAL.csproj", "{F5D3ED83-4EC5-478D-ABD5-0DD7F6B78975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestWebApp.BL", "NestWebApp.BL\NestWebApp.BL.csproj", "{AA7218E8-78F8-4B09-B095-FF15483AEA31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DAE2CB9A-A855-4761-B814-E0AA3B1AD999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE2CB9A-A855-4761-B814-E0AA3B1AD999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE2CB9A-A855-4761-B814-E0AA3B1AD999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D3ED83-4EC5-478D-ABD5-0DD7F6B78975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D3ED83-4EC5-478D-ABD5-0DD7F6B78975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D3ED83-4EC5-478D-ABD5-0DD7F6B78975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D3ED83-4EC5-478D-ABD5-0DD7F6B78975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA7218E8-78F8-4B09-B095-FF15483AEA31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA7218E8-78F8-4B09-B095-FF15483AEA31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA7218E8-78F8-4B09-B095-FF15483AEA31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA7218E8-78F8-4B09-B095-FF15483AEA31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

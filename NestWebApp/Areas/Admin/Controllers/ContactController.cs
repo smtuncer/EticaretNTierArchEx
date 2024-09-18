@@ -1,54 +1,49 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using NestWebApp.Models;
-using NestWebApp.Models.Data;
+using NestWebApp.BL.Repositories;
+using NestWebApp.DAL.Models;
 using NestWebApp.Models.StaticClasses;
 
-namespace NestWebApp.Areas.Admin.Controllers
-{
-    [Area("Admin")]
-    [Authorize(Roles = Role.Role_Admin)]
-    public class ContactController : Controller
-    {
+namespace NestWebApp.Areas.Admin.Controllers;
 
-        private readonly ApplicationDbContext _context;
-        public ContactController(ApplicationDbContext context)
+[Area("Admin")]
+[Authorize(Roles = Role.Role_Admin)]
+public class ContactController : Controller
+{
+    private readonly IRepository<Contact> _context;
+    public ContactController(IRepository<Contact> context)
+    {
+        _context = context;
+    }
+    public IActionResult Create()
+    {
+        var data = _context.GetAll();
+        if (data != null)
         {
-            _context = context;
-        }
-        public async Task<IActionResult> Create()
-        {
-            var data = await _context.Contact.AsNoTracking().FirstOrDefaultAsync();
-            if (data != null)
-            {
-                return RedirectToAction("Edit");
-            }
-            return View(data);
-        }
-        [HttpPost]
-        public async Task<IActionResult> Create(Contact p)
-        {
-            await _context.AddAsync(p);
-            await _context.SaveChangesAsync();
             return RedirectToAction("Edit");
         }
-        public async Task<IActionResult> Edit()
+        return View(data);
+    }
+    [HttpPost]
+    public IActionResult Create(Contact p)
+    {
+        _context.Add(p);
+        return RedirectToAction("Edit");
+    }
+    public IActionResult Edit()
+    {
+        var data = _context.GetAll();
+        if (data == null)
         {
-            var data = await _context.Contact.AsNoTracking().FirstOrDefaultAsync();
-            if (data == null)
-            {
-                return RedirectToAction("Create");
-            }
-            return View(data);
+            return RedirectToAction("Create");
         }
-        [HttpPost]
-        public async Task<IActionResult> Edit(Contact p)
-        {
-            _context.Update(p);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Edit");
-        }
+        return View(data);
+    }
+    [HttpPost]
+    public IActionResult Edit(Contact p)
+    {
+        _context.Update(p);
+        return RedirectToAction("Edit");
     }
 }
 
