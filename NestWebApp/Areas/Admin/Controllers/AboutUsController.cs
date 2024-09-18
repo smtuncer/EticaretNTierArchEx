@@ -17,7 +17,7 @@ public class AboutUsController : Controller
     }
     public IActionResult Create()
     {
-        var data = _context.GetAll();
+        var data = _context.GetAll().FirstOrDefault();
         if (data != null)
         {
             return RedirectToAction("Edit");
@@ -32,7 +32,7 @@ public class AboutUsController : Controller
     }
     public IActionResult Edit()
     {
-        var data = _context.GetAll();
+        var data = _context.GetAll().FirstOrDefault();
         if (data == null)
         {
             return RedirectToAction("Create");

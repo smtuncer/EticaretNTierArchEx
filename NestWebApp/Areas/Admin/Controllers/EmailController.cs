@@ -18,7 +18,7 @@ public class EmailController : Controller
     [HttpGet]
     public IActionResult Edit()
     {
-        var data = _context.GetAll();
+        var data = _context.GetAll().FirstOrDefault();
         if (data == null)
         {
             return RedirectToAction("Create");
@@ -38,7 +38,7 @@ public class EmailController : Controller
     public IActionResult Create()
     {
 
-        var data = _context.GetAll();
+        var data = _context.GetAll().FirstOrDefault();
         if (data == null)
         {
             return View();
