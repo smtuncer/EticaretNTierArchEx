@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Slider>
+
+@foreach (var item in Model)
+{
+    <div class="single-hero-slider single-animation-wrap" style="background-image: url(@item.Image)">
+        <div class="slider-content">
+            <h1 class="display-2 mb-40">
+                @item.Title
+            </h1>
+            @item.SubTitle
+        </div>
+    </div>
+}                        

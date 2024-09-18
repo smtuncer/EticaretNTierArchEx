@@ -1,0 +1,131 @@
+﻿
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Dashboard</h2>
+        <p>İşletmenizle ilgili tüm veriler burada</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card card-body mb-4">
+            <article class="icontext">
+                <span class="icon icon-sm rounded-circle bg-primary-light"><i class="text-primary material-icons md-monetization_on"></i></span>
+                <div class="text">
+                    <h6 class="mb-1 card-title">Fiyat Teklifi</h6>
+                    <span>@ViewBag.OrderCount</span>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card card-body mb-4">
+            <article class="icontext">
+                <span class="icon icon-sm rounded-circle bg-success-light"><i class="text-success material-icons md-person"></i></span>
+                <div class="text">
+                    <h6 class="mb-1 card-title">Kullanıcı</h6>
+                    <span>@ViewBag.UserCount</span>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card card-body mb-4">
+            <article class="icontext">
+                <span class="icon icon-sm rounded-circle bg-warning-light"><i class="text-warning material-icons md-qr_code"></i></span>
+                <div class="text">
+                    <h6 class="mb-1 card-title">Ürün</h6>
+                    <span>@ViewBag.ProductCount</span>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card card-body mb-4">
+            <article class="icontext">
+                <span class="icon icon-sm rounded-circle bg-info-light"><i class="text-info material-icons md-pie_chart"></i></span>
+                <div class="text">
+                    <h6 class="mb-1 card-title">Blog</h6>
+                    <span>@ViewBag.BlogCount</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<div class="card mb-4">
+    <header class="card-header">
+        <h4 class="card-title">En Çok Satılan Ürünler</h4> 
+    </header>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="table-responsive">
+                <table class="table align-middle table-nowrap mb-0">
+                    <thead class="table-light">
+                        <tr> 
+                            <th>Resim</th>
+                            <th>Ürün Adı</th>
+                            <th>Açıklama</th>
+                            <th>Gramaj</th>
+                            <th>Kutu İçi Miktar</th>
+                            <th>Öne Çıkarılsın mı?</th>
+                            <th>Kampanyalı mı?</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.TopProduct)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="left">
+                                        <img src="@item.Image" class="img-sm img-avatar" alt="Userpic" />
+                                    </div>
+                                </td>
+                                <td>@item.Title</td>
+                                <td>
+                                    @if (item.Description != null)
+                                    {
+                                        @if (item.Description.Length > 60)
+                                        {
+                                            @item.Description.Substring(0, 60)
+                                            <span>...</span>
+                                        }
+                                        else
+                                        {
+                                            @item.Description
+                                        }
+                                    }
+                                </td>
+                                <td>@item.Grammage</td>
+                                <td>@item.PiecesInBox</td>
+                                <td>
+                                    @if (item.IsFeatured)
+                                    {
+                                        <span class="badge rounded-pill alert-success">Evet</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill alert-danger">Hayır</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsCampaing)
+                                    {
+                                        <span class="badge rounded-pill alert-success">Evet</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill alert-danger">Hayır</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <a asp-controller="Product" asp-action="EditProduct" asp-route-id="@item.Id" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Güncelle </a>
+                                    <a asp-controller="Product" asp-action="DeleteProduct" asp-route-id="@item.Id" class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Sil </a>
+                                </td>
+                            </tr>
+                        }      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

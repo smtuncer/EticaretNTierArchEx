@@ -1,0 +1,28 @@
+﻿@model AboutUs
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Hakkımızda Yazısını Güncelle</h2>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Hakkımızda Yazısını Güncelle</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-4">
+                <label class="form-label">Başlık</label>
+                <input type="text" asp-for="Title" placeholder="Başlık" class="form-control" />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Hakkımızda Yazısı</label>
+                <textarea placeholder="Hakkımızda Yazısı" asp-for="Text" class="form-control" rows="10"></textarea>
+            </div>
+            <div class="mb-4">
+                <button class="btn btn-primary">Hakkımızda Yazısını Güncelle</button>
+            </div>
+        </form>
+    </div>
+</div>

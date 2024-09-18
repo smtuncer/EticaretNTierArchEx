@@ -1,0 +1,107 @@
+﻿@model OrderHeader
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Fiyat Teklifi Detayları</h2>
+    </div>
+    <div>
+        <a asp-action="OrderList" class="btn btn-primary btn-sm rounded">Fiyat Teklifi Listesi</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">Fiyat Teklifi Durumu: @Model?.Status</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">Ad Soyad: @Model?.Name @Model?.Surname</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">Email: @Model?.Email</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">Telefon No: @Model?.PhoneNumber</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">Şehir: @Model?.City</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-4">
+                    <label class="form-label">İlçe: @Model?.District</label>
+                </div>
+            </div>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Adres: @Model?.Address</label>
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Üyelik: <a class="btn btn-xs font-xs btn-light rounded" asp-controller="User" asp-action="UserDetail" asp-route-id="@Model?.AppUser?.Id"> @Model?.AppUser?.NameSurname</a> </label>
+        </div>
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Ürün Adı</th>
+                                    <th>Gramaj</th>
+                                    <th>Koli İçi Miktar</th>
+                                    <th>Fiyat</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>@item.Product?.Title</td>
+                                        <td>@item.Product?.Grammage</td>
+                                        <td>@item.Product?.PiecesInBox</td>
+                                        <td> 
+                                            <form method="post" asp-action="PriceEdit">
+                                                <input type="hidden" name="id" value="@item.Id">
+                                                <div class="mb-4">
+                                                    <input type="text" asp-for="@item.Price" name="Price" placeholder="Fiyat" value="@item?.Price" class="form-control" required />
+                                                </div>
+                                                <div class="d-grid">
+                                                    <button class="btn btn-xs font-xs btn-light rounded">Ekle</button>
+                                                </div>
+                                            </form> 
+                                        </td> 
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model?.Status==Other.teklifBekliyor)
+        {
+
+            <div class="mb-4">
+                <label class="form-label">Durumu Değiştir: <a class="btn btn-xs font-xs btn-light rounded" asp-action="TeklifGonderildi" asp-route-id="@Model?.Id">Teklif Gönderildi</a> </label>
+            </div>
+        }else
+        {
+            <div class="mb-4">
+                <label class="form-label">Durumu Değiştir: <a class="btn btn-xs font-xs btn-light rounded" asp-action="TeklifBekliyor" asp-route-id="@Model?.Id">Teklif Bekliyor</a> </label>
+            </div>
+        }
+    </div>
+</div>

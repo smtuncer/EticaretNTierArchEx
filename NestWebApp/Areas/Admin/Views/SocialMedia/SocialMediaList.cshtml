@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SocialMedia>
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Sosyal Medya Listesi</h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <form method="Post" asp-action="AddSocialMedia" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label class="form-label">Sosyal Medya Adı</label>
+                        <select name="SocialMediaName" class="form-select" required>
+                            <option value="">Seçiniz</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="Twitter">Twitter</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Youtube">Youtube</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Link *</label>
+                        <input type="text" name="Link" placeholder="Sosyal Medya Linki" class="form-control" required />
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary">Yeni Sosyal Medya Ekle</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sosyal Medya Adı</th>
+                                <th>Link</th>
+                                <th class="text-end">İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>@item.SocialMediaName</td>
+                                    <td>
+                                        <a href="@item.Link" target="_blank" class="text-info">
+                                             Görüntüle
+                                        </a>
+                                    </td>
+                                    <td class="text-end">
+                                        <a asp-action="EditSocialMedia" asp-route-id="@item.Id" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Güncelle </a>
+                                        <a asp-action="DeleteSocialMedia" asp-route-id="@item.Id" class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Sil </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

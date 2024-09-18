@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Product>
+
+@foreach (var item in Model)
+{
+    <div class="single-post clearfix">
+        <div class="image">
+            <img src="@item.Image" style="width:80px;height:80px;" alt="@item.Title" />
+        </div>
+        <div class="content pt-10">
+            <h6><a asp-action="ProductDetail" asp-route-id="@item.Id">@item.Title</a></h6>
+        </div>
+    </div>
+}                        

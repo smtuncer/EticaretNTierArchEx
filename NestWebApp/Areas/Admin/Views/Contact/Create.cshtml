@@ -1,0 +1,39 @@
+﻿@model Contact
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">İletişim Bilgileri</h2>
+    </div>
+</div>
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Yeni İletişim Bilgileri Ekle</h4>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-4">
+                <label class="form-label">Telefon Numarası</label>
+                <input type="text" asp-for="PhoneNumber" placeholder="Telefon Numarası" class="form-control" />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Email</label>
+                <input type="text" asp-for="Email" placeholder="Email" class="form-control" />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Çalışma Saatleri</label>
+                <input type="text" asp-for="OpeningHours" placeholder="Çalışma Saatleri" class="form-control" />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Adres</label>
+                <textarea placeholder="Adres" asp-for="Address" class="form-control" rows="6"></textarea>
+            </div>
+           @*  <div class="mb-4">
+                <label class="form-label">Google Map IFrame (Src)</label>
+                <textarea placeholder="Google Map IFrame (Src Kısmı)" asp-for="GoogleMapIframeSrc" class="form-control" rows="6"></textarea>
+            </div> *@
+            <div class="mb-4">
+                <button class="btn btn-primary">Yeni İletişim Bilgileri Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>

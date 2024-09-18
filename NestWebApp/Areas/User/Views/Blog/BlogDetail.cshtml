@@ -1,0 +1,62 @@
+﻿@model Blog
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> <a asp-action="BlogList">Blog</a> <span></span> @Model?.Title
+            </div>
+        </div>
+    </div>
+    <div class="page-content mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-11 col-lg-12 m-auto">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <div class="single-page pt-50 pr-30">
+                                <div class="single-header style-2">
+                                    <div class="row">
+                                        <div class="col-xl-10 col-lg-12 m-auto">
+                                            <h6 class="mb-10"><a asp-action="BlogList">Bloglar</a></h6>
+                                            <h2 class="mb-10">@Model?.Title</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <figure class="single-thumbnail">
+                                    <img src="@Model?.Image" alt="@Model?.Title" />
+                                </figure>
+                                <div class="single-content">
+                                    <div class="row">
+                                        <div class="col-xl-10 col-lg-12 m-auto">
+                                            <p class="single-excerpt">@Model?.BlogText</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 primary-sidebar sticky-sidebar pt-50">
+                            <div class="widget-area">
+                                <div class="sidebar-widget-2 widget_search mb-50">
+                                    <div class="search-form">
+                                        <form asp-action="SearchBlog">
+                                            <input type="text" name="q" placeholder="Blog Ara…" />
+                                            <button type="submit"><i class="fi-rs-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="sidebar-widget widget-category-2 mb-50">
+                                    <h5 class="section-title style-1 mb-30">Son Eklenen Bloglar</h5>
+                                    <ul>
+                                        @await Component.InvokeAsync("LastBlogVC")
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,67 @@
+﻿@model AppUser
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Kullanıcı Bilgileri</h2>
+    </div>
+    <div>
+        <a asp-action="UserList" class="btn btn-primary btn-sm rounded">Kullanıcı Listesi</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mb-4">
+                    <label class="form-label">Ad Soyad: @Model?.NameSurname</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-4">
+                    <label class="form-label">Email: @Model?.Email</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mb-4">
+                    <label class="form-label">Telefon No: @Model?.PhoneNumber</label>
+                </div>
+            </div>
+        </div>
+  
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Tarih</th>
+                                    <th>Ad Soyad</th>
+                                    <th>Email</th>
+                                    <th>Telefon No</th>
+                                    <th>Durum</th>
+                                    <th class="text-end">İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderHeader)
+                                {
+                                    <tr>
+                                        <td>@item.OrderDate.ToString("g")</td>
+                                        <td>@item.Name @item.Surname</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.PhoneNumber</td>
+                                        <td>@item.Status</td>
+                                        <td class="text-end">
+                                            <a asp-controller="Order" asp-action="OrderDetail" asp-route-id="@item.Id" class="btn btn-sm font-sm rounded btn-brand">Görüntüle</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

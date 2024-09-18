@@ -1,0 +1,72 @@
+﻿@model ShoppingCartVM
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Alışveriş Sepeti
+            </div>
+        </div>
+    </div>
+    <div class="container mb-80 mt-50">
+        <div class="row">
+            <div class="col-lg-8 mb-40">
+                <h1 class="heading-2 mb-10">Sepetiniz</h1>
+                <div class="d-flex justify-content-between">
+                    <h6 class="text-body">Sepetinizde <span class="text-brand">@Model?.ListCart?.Count()</span> adet ürün mevcut</h6>
+                    <h6 class="text-body"><a asp-action="RemoveAll" class="text-muted"><i class="fi-rs-trash mr-5"></i>Sepeti Temizle</a></h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="table-responsive shopping-summery">
+                    <table class="table table-wishlist">
+                        <thead>
+                            <tr class="main-heading">
+                                <th scope="col" class="pl-30">Ürün Resmi</th>
+                                <th scope="col">Ürün Adı</th>
+                            @*     <th scope="col">Miktar</th> *@
+                                <th scope="col" class="end">Kaldır</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListCart)
+                            {
+
+                                <tr class="pt-30">
+                                    <td class="image product-thumbnail pl-30"><img src="@item.Product?.Image" alt="@item.Product?.Title"></td>
+                                    <td class="product-des product-name">
+                                        <h6 class="mb-5">
+                                            <a class="product-name mb-10 text-heading" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.Product?.Id">
+                                                @item.Product?.Title
+                                            </a>
+                                        </h6>
+                                    </td>
+                               @*      <td class="text-center detail-info" data-title="Stock">
+
+                                        <a asp-action="Decrease" asp-route-cartId="@item.Id" class="qty-down">-</a>
+                                        <input class="qty-val" asp-for="@item.Count" value="@item.Count" type="text">
+                                        <a asp-action="Add" asp-route-cartId="@item.Id" class="qty-up">+</a>
+                                             
+                                    </td> *@
+                                    <td class="action" data-title="Remove"><a asp-action="Remove" asp-route-cartId="@item.Id" class="text-body"><i class="fi-rs-trash"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="divider-2 mb-30"></div>
+                <div class="cart-action d-flex justify-content-between">
+                    <a class="btn " asp-controller="Product" asp-action="ProductList"><i class="fi-rs-arrow-left mr-10"></i>Alışverişe Devam Et</a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="border p-md-4 cart-totals ml-30">
+                    <a asp-action="Summary" class="btn mb-20 w-100">Fiyat Teklifi İçin Devam Et<i class="fi-rs-sign-out ml-15"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

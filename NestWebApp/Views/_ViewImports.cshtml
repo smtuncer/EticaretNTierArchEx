@@ -1,0 +1,11 @@
+﻿@using NestWebApp;
+@using NestWebApp.Models;
+@using NestWebApp.Models.StaticClasses;
+@using NestWebApp.Models.ViewModels;
+@using System.Text.RegularExpressions;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

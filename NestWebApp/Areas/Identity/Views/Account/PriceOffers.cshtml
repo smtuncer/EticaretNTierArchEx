@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OrderHeader>
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Hesabım <span></span> Fiyat Teklifleri
+            </div>
+        </div>
+    </div>
+    <div class="page-content pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="mb-0">Fiyat Tekliflerin</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tarih</th>
+                                                    <th>Ad Soyad</th>
+                                                    <th>Email</th>
+                                                    <th>Telefon No</th>
+                                                    <th>Durum</th>
+                                                    <th>İşlem</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model)
+                                                {
+
+                                                    <tr>
+                                                        <td>@item.OrderDate.ToString("g")</td>
+                                                        <td>@item.Name @item.Surname</td>
+                                                        <td>@item.Email</td>
+                                                        <td>@item.PhoneNumber</td>
+                                                        <td>@item.Status</td>
+                                                        <td><a asp-action="PriceOfferDetails" asp-route-id="@item.Id" class="btn-small d-block">Görüntüle</a></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

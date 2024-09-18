@@ -1,0 +1,31 @@
+﻿@model Brand
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Marka Bilgilerini Güncelle</h2>
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-primary btn-sm rounded">Marka Listesi</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Image" /> 
+            <div class="mb-4">
+                <label class="form-label">Marka Adı</label>
+                <input type="text" asp-for="Title" placeholder="Marka Adı" class="form-control" required />
+            </div>  
+            <div class="mb-4">
+                <label class="form-label">Resim</label>
+                <br />
+                <img src="@Model?.Image" style="height:100px;width:auto;" alt="" />
+                <input class="form-control" type="file" asp-for="Image" />
+            </div> 
+            <div class="mb-4">
+                <button class="btn btn-primary">Marka Bilgilerini Güncelle</button>
+            </div>
+        </form>
+    </div>
+</div>

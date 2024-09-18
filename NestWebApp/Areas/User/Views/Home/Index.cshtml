@@ -1,0 +1,61 @@
+﻿<main class="main">
+    <section class="home-slider position-relative mb-30">
+        <div class="container">
+            <div class="home-slide-cover mt-30">
+                <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
+
+                    @await Component.InvokeAsync("SliderVC")
+                </div>
+                <div class="slider-arrow hero-slider-1-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding pb-5">
+        <div class="container">
+            <section class="text-center mb-50">
+                <h2 class="title style-3 mb-40">Ne Sağlıyoruz?</h2>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-24">
+                        <div class="featured-card">
+                            <img src="~/nest_v5.8_unzip-first/nest_v5.8_unzip-first/nest-frontend/assets/imgs/theme/icons/icon-1.svg" alt="" />
+                            <h4>En İyi Fiyatlar Ve Teklifler</h4>
+                            <p>Güncellenen fiyatlar ve özel teklifler sayesinde müşterilerimiz, bütçelerine uygun ürünleri kaçırmadan satın alma şansına sahip olacaklar</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-24">
+                        <div class="featured-card">
+                            <img src="~/nest_v5.8_unzip-first/nest_v5.8_unzip-first/nest-frontend/assets/imgs/theme/icons/icon-2.svg" alt="" />
+                            <h4>Ürün Çeşitliliği</h4>
+                            <p>Müşterilerimiz, zengin ürün kategorilerinde gezinirken ihtiyaçlarına uygun en kaliteli ve güncel ürünleri bulma avantajına sahiptir.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-24">
+                        <div class="featured-card">
+                            <img src="~/nest_v5.8_unzip-first/nest_v5.8_unzip-first/nest-frontend/assets/imgs/theme/icons/icon-5.svg" alt="" />
+                            <h4>100% Memnuniyet</h4>
+                            <p>Ürünlerde ve hizmetlerde herhangi bir sorun yaşandığında, profesyonel müşteri destek ekibimiz ivedilikle çözüm sunmak için hazır bulunmaktadır. </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="section-title">
+                <h3 class="">Öne Çıkarılan Ürünler</h3>
+                <a class="show-all" asp-controller="Product" asp-action="ProductList">
+                    Tüm Ürünler
+                    <i class="fi-rs-angle-right"></i>
+                </a>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row related-products">
+                            @await Component.InvokeAsync("FeaturedProductsVC")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>

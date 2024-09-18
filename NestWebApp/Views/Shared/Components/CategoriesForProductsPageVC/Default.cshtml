@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ProductCategory>
+
+@foreach (var item in Model)
+{
+    <li>
+        <a asp-action="CategoryDetail" asp-route-id="@item.Id">@item.Title</a><span class="count">@item.Product?.Count()</span>
+    </li>
+}                        

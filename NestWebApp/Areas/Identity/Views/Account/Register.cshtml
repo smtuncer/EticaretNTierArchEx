@@ -1,0 +1,52 @@
+﻿@model RegisterVM
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-area="User" asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Kayıt Ol
+            </div>
+        </div>
+    </div>
+    <div class="page-content pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-12 col-md-12 m-auto">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="login_wrap widget-taber-content background-white">
+                                <div class="padding_eight_all bg-white">
+                                    <div class="heading_s1">
+                                        <h1 class="mb-5">Kayıt Ol</h1>
+                                        <p class="mb-30">Zaten bir hesabınız var mı? <a asp-action="Login">Giriş</a></p>
+                                    </div>
+                                    <form method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <input type="text" required asp-for="NameSurname" placeholder="Ad Soyad *" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required asp-for="Email" placeholder="Email *" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" required asp-for="PhoneNumber" placeholder="Telefon Numarası *" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" asp-for="Password" placeholder="Parola" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input required="" type="password" asp-for="ConfirmPassword" placeholder="Parola Tekrar" />
+                                        </div> 
+                                        <div class="form-group mb-30">
+                                            <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" >Kayıt Ol</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

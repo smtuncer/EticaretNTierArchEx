@@ -1,0 +1,93 @@
+﻿@model ShoppingCartVM
+
+<form method="post">
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Alışveriş Sepeti
+                <span></span> Fiyat Teklifi Al
+            </div>
+        </div>
+    </div>
+    <div class="container mb-80 mt-50">
+        <div class="row">
+            <div class="col-lg-8 mb-40">
+                <h1 class="heading-2 mb-10">Kontrol Et</h1>
+                <div class="d-flex justify-content-between">
+                    <h6 class="text-body">Sepetinizde <span class="text-brand">@Model?.ListCart?.Count()</span> adet ürün mevcut</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="row mb-50">
+                    <h4 class="mb-30">Sipariş Detayları</h4>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <input type="text" required asp-for="OrderHeader.Name" placeholder="Ad *">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="text" required asp-for="OrderHeader.Surname" placeholder="Soyad *">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <input type="email" required asp-for="OrderHeader.Email" placeholder="Email *">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="text" required asp-for="OrderHeader.PhoneNumber" placeholder="Telefon Numarası *">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <input type="text" required asp-for="OrderHeader.City" placeholder="Şehir *">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <input type="text" required asp-for="OrderHeader.District" placeholder="İlçe *">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <input type="text" asp-for="OrderHeader.Address" required placeholder="Adres *">
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="border p-40 cart-totals ml-30 mb-50">
+                    <div class="d-flex align-items-end justify-content-between mb-30">
+                        <h4>İstek Listeniz</h4>
+                    </div>
+                    <div class="divider-2 mb-30"></div>
+                    <div class="table-responsive order_table checkout">
+                        <table class="table no-border">
+                            <tbody>
+                                @foreach (var item in Model.ListCart)
+                                {
+                                    
+                                    <tr>
+                                        <td class="image product-thumbnail"><img src="@item?.Product?.Image" alt="@item?.Product?.Title"></td>
+                                        <td>
+                                            <h6 class="w-160 mb-5"><a href="shop-product-full.html" class="text-heading">@item?.Product?.Title</a></h6> 
+                                        </td>
+                                      @*   <td>
+                                            <h6 class="text-muted pl-20 pr-20">x @item?.Count</h6>
+                                        </td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="payment ml-30">
+                    <div class="payment_option">
+                    <button type="submit" class="btn btn-fill-out btn-block mt-30">Fiyat Teklifi Al<i class="fi-rs-sign-out ml-15"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</form>

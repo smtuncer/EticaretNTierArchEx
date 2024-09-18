@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Brand>
+
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Markalarımız
+            </div>
+        </div>
+    </div>
+    <div class="container mb-30">
+        <div class="row">
+            <div class="col-12">
+                <div class="shop-product-fillter">
+                    <div class="totall-product text-center">
+                        <p>1997'den Beri <strong class="text-brand">@Model?.Count()</strong> Marka</p>
+                    </div>
+                </div>
+                <div class="row product-grid">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <img class="default-img" style="height:150px;width:auto;" src="@item.Image" alt="@item.Title" />
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap mt-1">
+                                    <h2>@item.Title</h2>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,93 @@
+﻿@model OrderHeader
+<main class="main pages">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a asp-controller="Home" asp-action="Index" rel="nofollow"><i class="fi-rs-home mr-5"></i>Anasayfa</a>
+                <span></span> Hesabım <span></span> Fiyat Teklifleri <span></span> Fiyat Teklifi Detayı
+            </div>
+        </div>
+    </div>
+    <div class="page-content pt-50 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Fiyat Teklifi Durumu: @Model?.Status</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Ad Soyad: @Model?.Name @Model?.Surname</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Email: @Model?.Email</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Telefon No: @Model?.PhoneNumber</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">Şehir: @Model?.City</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="form-label">İlçe: @Model?.District</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Adres: @Model?.Address</label>
+                    </div>
+                  @*   <div class="mb-4">
+                        <label class="form-label">Üyelik: <a class="btn btn-xs font-xs btn-light rounded"> @Model?.AppUser?.NameSurname</a> </label>
+                    </div> *@
+                    <div class="mb-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Ürün Adı</th>
+                                                <th>Gramaj</th>
+                                                <th>Koli İçi Miktar</th>
+                                                <th>Fiyat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.OrderDetails)
+                                            {
+                                                <tr>
+                                                    <td>@item.Product?.Title</td>
+                                                    <td>@item.Product?.Grammage</td>
+                                                    <td>@item.Product?.PiecesInBox</td>
+                                                    <td>
+                                                        @item.Price
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

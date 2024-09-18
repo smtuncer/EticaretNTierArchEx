@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Brand>
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Markalarımız</h2>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <form method="Post" asp-action="AddBrand" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label class="form-label">Marka Adı</label>
+                        <input type="text" name="Title" placeholder="Marka Adı" class="form-control" required />
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Resim</label>
+                        <input class="form-control" type="file" name="Image" required />
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-primary">Yeni Marka Ekle</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-9">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Resim</th>
+                                <th>Marka Adı</th>
+                                <th class="text-end">İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <div class="left">
+                                            <img src="@item.Image" class="img-sm img-avatar" alt="Userpic" />
+                                        </div>
+                                    </td>
+                                    <td>@item.Title</td>
+                                    <td class="text-end">
+                                        <a asp-action="EditBrand" asp-route-id="@item.Id" class="btn btn-sm font-sm rounded btn-brand"> <i class="material-icons md-edit"></i> Güncelle </a>
+                                        <a asp-action="DeleteBrand" asp-route-id="@item.Id" class="btn btn-sm font-sm btn-light rounded"> <i class="material-icons md-delete_forever"></i> Sil </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

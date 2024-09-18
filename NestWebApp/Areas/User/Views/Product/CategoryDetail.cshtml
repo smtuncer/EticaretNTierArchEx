@@ -1,0 +1,78 @@
+﻿@model ProductCategory
+<main class="main">
+    <div class="container mt-30 mb-30">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-4-5">
+                <div class="shop-product-fillter">
+                    <div class="totall-product">
+                        <p>Sizin için @Model?.Title Kategorisinde <strong class="text-brand">@Model?.Product?.Count()</strong> adet ürün bulduk!</p>
+                    </div>
+                </div>
+                <div class="row product-grid">
+                    @foreach (var item in Model.Product)
+                    {
+
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a asp-action="ProductDetail" asp-route-id="@item.Id">
+                                            <img class="default-img" style="height:150px;width:auto;" src="@item.Image" alt="@item.Title" />
+                                        </a>
+                                    </div>
+                                    @if (item.IsCampaing)
+                                    {
+                                        <div class="product-badges product-badges-position product-badges-mrg">
+                                            <span class="hot">İndirim</span>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="product-content-wrap">
+                                    <div class="product-category">
+                                        <a asp-action="CategoryDetail" asp-route-id="@item.ProductCategoryId">@item.ProductCategory?.Title</a>
+                                    </div>
+                                    <h2><a asp-action="ProductDetail" asp-route-id="@item.Id">@item.Title</a></h2>
+                                    <div class="product-card-bottom">
+                                        <div class="add-cart">
+                                            <a class="add" asp-action="ProductDetail" asp-route-id="@item.Id">Görüntüle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    } 
+                </div>
+                <section class="section-padding pb-5">
+                    <div class="section-title">
+                        <h3 class="">Öne Çıkarılan Ürünler</h3>
+                        <a class="show-all" asp-action="ProductList">
+                            Tüm Ürünler
+                            <i class="fi-rs-angle-right"></i>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row related-products">
+                                    @await Component.InvokeAsync("FeaturedProductsVC")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
+                <div class="sidebar-widget widget-category-2 mb-30">
+                    <h5 class="section-title style-1 mb-30">Kategoriler</h5>
+                    <ul>
+                        @await Component.InvokeAsync("CategoriesForProductsPageVC")
+                    </ul>
+                </div>
+                <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
+                    <h5 class="section-title style-1 mb-30">Yeni Ürünler</h5>
+                    @await Component.InvokeAsync("NewProductVC")
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

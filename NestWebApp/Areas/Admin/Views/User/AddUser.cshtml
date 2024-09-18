@@ -1,0 +1,62 @@
+﻿@model RegisterVM
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Yeni Kullanıcı Ekle</h2>
+    </div>
+    <div>
+        <a asp-action="UserList" class="btn btn-primary btn-sm rounded">Kullanıcı Listesi</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-4">
+                <label class="form-label">Yetki *</label>
+                <select asp-for="Role" class="form-select" required>
+                    <option value="">Seçiniz..</option>
+                    <option value="@Role.Role_Admin">@Role.Role_Admin</option>
+                    <option value="@Role.Role_User">@Role.Role_User</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <label class="form-label">Ad Soyad *</label>
+                        <input type="text" asp-for="NameSurname" placeholder="Ad Soyad" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <label class="form-label">Email *</label>
+                        <input type="email" asp-for="Email" placeholder="Email" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <label class="form-label">Telefon Numarası *</label>
+                        <input type="text" asp-for="PhoneNumber" placeholder="Telefon Numarası" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Parola *</label>
+                        <input type="text" asp-for="Password" placeholder="Parola" class="form-control" required>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="mb-4">
+                        <label class="form-label">Parola Tekrar *</label>
+                        <input type="text" asp-for="ConfirmPassword" placeholder="Parola Tekrar" class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <button class="btn btn-primary">Yeni Kullanıcı Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>

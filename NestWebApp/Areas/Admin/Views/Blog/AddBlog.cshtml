@@ -1,0 +1,31 @@
+﻿@model Blog
+
+<div class="content-header">
+    <div>
+        <h2 class="content-title card-title">Yeni Blog Ekle</h2>
+    </div>
+    <div>
+        <a asp-action="BlogList" class="btn btn-primary btn-sm rounded">Blog Listesi</a>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data"> 
+            <div class="mb-4">
+                <label class="form-label">Başlık *</label>
+                <input type="text" asp-for="Title" placeholder="Başlık" class="form-control" required />
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Blog İçeriği *</label>
+                <textarea asp-for="BlogText" placeholder="Blog İçeriği" class="form-control" rows="8" required></textarea>
+            </div> 
+            <div class="mb-4">
+                <label class="form-label">Resim *</label>
+                <input class="form-control" type="file" asp-for="Image" required />
+            </div>
+            <div class="mb-4">
+                <button class="btn btn-primary">Yeni Blog Ekle</button>
+            </div>
+        </form>
+    </div>
+</div>
