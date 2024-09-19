@@ -58,8 +58,8 @@ public class AccountController : Controller
                 {
                     await _roleManager.CreateAsync(new IdentityRole(Role.Role_User));
                 }
-                await _userManager.AddToRoleAsync(user, Role.Role_Admin);
-                //await _userManager.AddToRoleAsync(user, Role.Role_User);
+                //await _userManager.AddToRoleAsync(user, Role.Role_Admin);
+                await _userManager.AddToRoleAsync(user, Role.Role_User);
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 return RedirectToAction("Login");
